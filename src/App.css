@@ -2,3 +2,7 @@ body {
   color: white;
   background-color: #02004a;
 }
+
+.buttonColor {
+  background-color: #8e8ddb !important;
+}
