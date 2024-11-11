@@ -1,4 +1,5 @@
 import Button from "@mui/material/Button";
+import BeeGlobePic from "../assets/bee-globe.png";
 
 const Hero = () => {
   return (
@@ -9,10 +10,13 @@ const Hero = () => {
             Enhance your business with AI driven IT solutions
           </p>
         </div>
-        <div className="w-[160px] flex">
+        <div className="w-[160px] flex flex-col justify-center align-center">
           <Button variant="contained" className="buttonColor">
             Book a call
           </Button>
+        </div>
+        <div className="flex">
+          <img src={BeeGlobePic} alt="" />
         </div>
       </div>
     </div>
