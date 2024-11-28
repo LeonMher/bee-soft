@@ -6,3 +6,7 @@ body {
 .buttonColor {
   background-color: #8e8ddb !important;
 }
+
+.card {
+  background-color: red !important;
+}

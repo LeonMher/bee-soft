@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { Cards } from "./Cards";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 type CardProps = {
   slides: {
@@ -10,55 +12,26 @@ type CardProps = {
 };
 
 function Slider({ slides }: CardProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
-    );
-  };
-
   return (
-    <div className="relative w-full max-w-lg mx-auto">
+    <div className="relative w-full max-w-lg mx-auto  p-4">
       <div className="overflow-hidden">
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-          }}
-        >
-          {slides.map((slide, index) => (
-            <div className="w-full flex-shrink-0" key={index}>
-              <div className="w-300px">
-                <img src={slide.avatar} alt="" className="w-300px" />
+        <div className="flex transition-transform duration-500 ease-in-out">
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={2}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            {slides.map((slide, index) => (
+              <div className="w-full flex-shrink-0 " key={index}>
+                <SwiperSlide>
+                  <Cards {...slide} />
+                </SwiperSlide>
               </div>
-              <div>
-                <h3>{slide.full_name}</h3>
-                <p>{slide.position}</p>
-                <p>{slide.description}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </Swiper>
         </div>
       </div>
-
-      <button
-        onClick={prevSlide}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white text-black p-2 rounded-full shadow-md"
-      >
-        &#10094;
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white text-black p-2 rounded-full shadow-md"
-      >
-        &#10095;
-      </button>
     </div>
   );
 }
